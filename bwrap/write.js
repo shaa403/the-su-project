@@ -6,7 +6,7 @@ import { join } from "node:path";*/
 
 //const charlen = 1024;
 
-//const len = (...strs) => strs.reduce((accum, str)=> accum + Buffer.byteLength(str), 0);
+const len = (...strs) => strs.reduce((accum, str)=> accum + Buffer.byteLength(str), 0);
 
 class _class {
    constructor() {
@@ -22,6 +22,11 @@ class _class {
     */
    writehead(path, content_offset) {
       this.header += path + "\t" + content_offset + "\n";    
+      return void 0;
+   }
+
+   endhead() {
+      this.header = len(this.header) + "\n" + this.header;
       return void 0;
    }
 
