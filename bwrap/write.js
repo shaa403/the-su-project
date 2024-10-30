@@ -11,6 +11,7 @@ const len = (...strs) => strs.reduce((accum, str)=> accum + Buffer.byteLength(st
 class _class {
    constructor() {
       this.header = "";
+      this.payload = "";
    }
 
    /**
@@ -25,11 +26,18 @@ class _class {
       return void 0;
    }
 
-   endhead() {
-      this.header = len(this.header) + "\n" + this.header;
-      return void 0;
+   writepayload(data) {
+   	  this.payload += data;
+   	  return void 0;
    }
 
+   wrap() {
+      let buff = len(this.header) + "\n" + this.header;
+      this.header = "";
+      buff += this.payload;
+      this.payload = "";
+      return buff;
+   }
 
    /**
    17     * Do not send a line > 1024 bytes

@@ -20,15 +20,15 @@ function wrap(path_to_tardir) {
          	if (statSync(target).isFile()) {
          	
          	   bwrite.writehead(join(watched_dir, watched_dir_contents[i]), content_offs);
-
-         	   content_offs += Buffer.byteLength(readFileSync(target));
+               const content = readFileSync(target);
+               bwrite.writepayload(content);
+         	   content_offs += Buffer.byteLength(content);
          	              	   
          	} else scanfs(join(watched_dir, watched_dir_contents[i]));
          }
       }
       scanfs("");
-      bwrite.endhead();
-      console.log(bwrite.header);
+      console.log(bwrite.wrap());
    } else {
    	 //terminate: target must be an existing dir
    }
