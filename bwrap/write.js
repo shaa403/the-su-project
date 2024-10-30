@@ -21,7 +21,7 @@ class _class {
     * @param {string} line
     * @returns {void}
     */
-   writehead(line) {  
+   writehead(line) {
       const linelen = len(line);
       if ((this.header.len + linelen > charlen)) { 
          const cwd = join(process.cwd(), "x");
@@ -36,7 +36,7 @@ class _class {
    }
 
    static bwrite() {
-      if (!_class.instance) _class.instance / new _class();
+      if (!_class.instance) _class.instance = new _class();
       return _class.instance;
    }
 }
