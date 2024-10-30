@@ -1,11 +1,6 @@
 
 "use strict";
 
-/*import { appendFileSync, existsSync, writeFileSync } from "node:fs";
-import { join } from "node:path";*/
-
-//const charlen = 1024;
-
 const len = (...strs) => strs.reduce((accum, str)=> accum + Buffer.byteLength(str), 0);
 
 class _class {
@@ -38,26 +33,6 @@ class _class {
       this.payload = "";
       return buff;
    }
-
-   /**
-   17     * Do not send a line > 1024 bytes
-   18     * @param {string} line
-   19     * @returns {void}
-   20     
-   21    writehead(line) {
-   22       const linelen = len(line);
-   23       if ((this.header.len + linelen > charlen)) {
-   24          const cwd = join(process.cwd(), "x");
-   25          if (!existsSync(cwd)) writeFileSync(cwd, "");
-   26          appendFileSync(cwd, this.header.value);
-   27          this.header.len = 0;
-   28          this.header.value = "";
-   29       }
-   30       this.header.value += line;
-   31       this.header.len += linelen;
-   32       return void 0;
-   33    }
-   */
 
    static bwrite() {
       if (!_class.instance) _class.instance = new _class();
