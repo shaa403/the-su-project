@@ -1,11 +1,12 @@
 
 "use strict";
 
-import { appendFileSync } from "node:fs";
+import { appendFileSync, existsSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 
 const charlen = 1024;
 
-const len = ...strs => strs.reduce((accum, str)=> accum + Buffer.byteLength(str), 0);
+const len = (...strs) => strs.reduce((accum, str)=> accum + Buffer.byteLength(str), 0);
 
 class _class {
    constructor() {
@@ -22,8 +23,10 @@ class _class {
     */
    writehead(line) {  
       const linelen = len(line);
-      if ((this.header.len + linelen > charlen) {   
-         appendFileSync(this.header.value);
+      if ((this.header.len + linelen > charlen)) { 
+         const cwd = join(process.cwd(), "x");
+         if (!existsSync(cwd)) writeFileSync(cwd, "");
+         appendFileSync(cwd, this.header.value);
          this.header.len = 0;
          this.header.value = "";
       }
